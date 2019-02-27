@@ -1,21 +1,155 @@
 <div class="card">
     <div class="card-header">
-        Sign Up!
+        Technical Test
     </div>
 
     <div class="card-body">
         <form novalidate
-        (ngSubmit)="save(signupForm)"
-        #signupForm="ngForm">
+        (ngSubmit)="save()"
+        [formGroup]="companiesForm">
+
+        <!-- Company Id-->
         <div class="form-group row mb-2">
             <label class="col-md-2 col-form-label"
-            for="CompaniesId">Company ID</label>
+            for="Id">Company Id</label>
+            <div class="col-md-8">
+                <input class="form-control"
+                id=Id
+                type="text"
+                placeholder="Id of Company (required)"
+                formControlName="Id"                
+                [ngClass]="{ 'is-invalid': (companiesForm.get('Id').touched || 
+                companiesForm.get('Id').dirty) && 
+                !companiesForm.get('Id').valid }" />
+                <span class="invalid-feedback">
+                    <span *ngIf="companiesForm.get('Id').errors?.required">
+                        Please enter Company Id.
+                    </span>
+                    <span *ngIf="companiesForm.get('Id').errors?.minlength">
+                        The Company Id must be longer than 3 characters
+                    </span>
+                </span>
+            </div>
+        </div>
+        
+        <!--Company Name -->
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+                   for="companyName">Company Name</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="CompanyName"
+                     type="text"
+                     placeholder="Company Name (required)"
+                    formControlName="CompanyName"                 
+                    [ngClass]="{'is-invalid': (companiesForm.get('CompanyName').touched || 
+                    companiesForm.get('CompanyName').dirty) && 
+                    !companiesForm.get('CompanyName').valid }" />
+              <span class="invalid-feedback">
+                <span *ngIf="companiesForm.get('CompanyName').errors?.required">
+                  Please enter your company name.
+                </span>
+                <span *ngIf="companiesForm.get('CompanyName').errors?.maxLength">
+                  The company name must be less than 10 characters.
+                </span>
+              </span>
+            </div>
+          </div>
+
+           <!--Address-->
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label"
+                 for="CompaniesAddress">Company Address</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="CompaniesAddress"
+                   type="text"
+                   placeholder="Company Address (required)"
+                 formControlName="Address"                 
+                   [ngClass]="{'is-invalid': (companiesForm.get('Address').touched || 
+                   companiesForm.get('Address').dirty) && 
+                   !companiesForm.get('Address').valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="companiesForm.get('Address').errors?.required">
+                Please enter your company Address.
+              </span>
+              <span *ngIf="companiesForm.get('Address').errors?.maxLength">
+                The company Address must be less than 50 characters.
+              </span>
+            </span>
+          </div>
+        </div>
+
+       <!--Zip Code-->
+       <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="companyZipCode">Company ZipCode</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="companyZipCode"
+                 type="text"
+                 placeholder="Company ZipCode (required)"
+                formControlName="ZipCode"
+                [ngClass]="{'is-invalid': (companiesForm.get('ZipCode').touched || 
+                companiesForm.get('ZipCode').dirty) && 
+                !companiesForm.get('ZipCode').valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="companiesForm.get('ZipCode').errors?.required">
+              Please enter your company ZipCode.
+            </span>
+            <span *ngIf="companiesForm.get('ZipCode').errors?.maxLength">
+              The company ZipCode must be less than 5 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+
+       <!--City-->
+       <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="companyCity">Company City</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="companyCity"
+                 type="text"
+                 placeholder="Company City (required)"
+              formControlName="City"
+                 [ngClass]="{'is-invalid': (companiesForm.get('City').touched || 
+                 companiesForm.get('City').dirty) && 
+                 !companiesForm.get('City').valid }" />
+          <span class="invalid-feedback">
+            <span *ngIf="companiesForm.get('City').errors?.required">
+              Please enter your company City.
+            </span>
+            <span *ngIf="companiesForm.get('City').errors?.maxLength">
+              The company City must be less than 10 characters.
+            </span>
+          </span>
+        </div>
+      </div>
+    
+
+        <div class="form-group row mb-2">
+            <div class="offset-md-2 col-md-4">
+                <button class="btn btn-primary mr-3"
+                type="submit"
+                style="width:80px"
+                [title]="companiesForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                [disabled]="!companiesForm.valid">
+            Save
+            </button>
+            <!-- <button class="btn btn-outline-secondary"
+            type="button"
+            (click)="populateTestData()">
+            Test Data    
+        </button> -->
+            </div>
         </div>
     </form>
 </div>
 
 </div>
-<br>Dirty: {{ signupForm.Dirty}}
-<br>Touched: {{ signupForm.Touched}}
-<br>Valid: {{ signupForm.Valid}}
-<br>Value: {{ signupForm.Value | json }}
+<br>Dirty: {{ companiesForm.dirty}}
+<br>Touched: {{ companiesForm.touched}}
+<br>Valid: {{ companiesForm.valid}}
+<br>Value: {{ companiesForm.value | json }}

@@ -1,9 +1,9 @@
 export class Companies {
 
     constructor(
-        public ID = '',
-    public Name = '',
-    public Address?: string,
+        public Id = '',
+    public CompanyName = '',
+    public Address = '',
     public ZipCode?: string, 
     public Country?: string,
     public City = '') { }
