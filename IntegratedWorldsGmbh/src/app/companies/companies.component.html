@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header">
+        Sign Up!
+    </div>
+
+    <div class="card-body">
+        <form novalidate
+        (ngSubmit)="save(signupForm)"
+        #signupForm="ngForm">
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label"
+            for="CompaniesId">Company ID</label>
+        </div>
+    </form>
+</div>
+
+</div>
+<br>Dirty: {{ signupForm.Dirty}}
+<br>Touched: {{ signupForm.Touched}}
+<br>Valid: {{ signupForm.Valid}}
+<br>Value: {{ signupForm.Value | json }}
